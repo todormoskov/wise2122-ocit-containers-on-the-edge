@@ -1,0 +1,325 @@
+[
+    {
+        "id": "45378e343a878762",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e38a85a5381c84df",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2ed48d4373df6069",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.64.10",
+        "port": "30415",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4609e0fdd2ea2580",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "bf785cbd57242ab1",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD.MM.YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "7cd40c405be3812e",
+        "type": "ui_group",
+        "name": "Workshop",
+        "tab": "4609e0fdd2ea2580",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "547212042de46e5e",
+        "type": "inject",
+        "z": "45378e343a878762",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Random",
+        "payload": "",
+        "payloadType": "str",
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "fe928e5c21d50806"
+            ]
+        ]
+    },
+    {
+        "id": "fe928e5c21d50806",
+        "type": "function",
+        "z": "45378e343a878762",
+        "name": "Generate random temperature",
+        "func": "// Generate a random temperature between min and max\nlet min = 23;\nlet max = 25;\nlet randomTemperature = Math.random() * (max - min) + min;\nrandomTemperature = randomTemperature.toFixed(2);\nreturn { payload: randomTemperature };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "35b8c29313e0cfdf",
+                "f06930ee1016b6a8"
+            ]
+        ]
+    },
+    {
+        "id": "35b8c29313e0cfdf",
+        "type": "mqtt out",
+        "z": "45378e343a878762",
+        "name": "",
+        "topic": "workshop/indoor/temperature",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2ed48d4373df6069",
+        "x": 910,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f06930ee1016b6a8",
+        "type": "debug",
+        "z": "45378e343a878762",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "262c0d1a02fe1355",
+        "type": "mqtt in",
+        "z": "e38a85a5381c84df",
+        "name": "",
+        "topic": "workshop/indoor/temperature",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ed48d4373df6069",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "6e2ab0e9bad7781c",
+                "92ace70ef35e2fc1"
+            ]
+        ]
+    },
+    {
+        "id": "6e2ab0e9bad7781c",
+        "type": "debug",
+        "z": "e38a85a5381c84df",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "92ace70ef35e2fc1",
+        "type": "ui_chart",
+        "z": "e38a85a5381c84df",
+        "name": "",
+        "group": "7cd40c405be3812e",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "label": "Indoor temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "23",
+        "ymax": "25",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    }
+]
